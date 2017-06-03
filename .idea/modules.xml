@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/6666/6666.iml" filepath="$PROJECT_DIR$/6666/6666.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-web/api-web.iml" filepath="$PROJECT_DIR$/api-web/api-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jd-study.iml" filepath="$PROJECT_DIR$/jd-study.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-web/jd-study-api-web.iml" filepath="$PROJECT_DIR$/api-web/jd-study-api-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jd-study-common/jd-study-common.iml" filepath="$PROJECT_DIR$/jd-study-common/jd-study-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jd-study-dubbo/jd-study-dubbo.iml" filepath="$PROJECT_DIR$/jd-study-dubbo/jd-study-dubbo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jd-study-man-web/jd-study-man-web.iml" filepath="$PROJECT_DIR$/jd-study-man-web/jd-study-man-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jd-study-one/jd-study-one.iml" filepath="$PROJECT_DIR$/jd-study-one/jd-study-one.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis/mybatis.iml" filepath="$PROJECT_DIR$/mybatis/mybatis.iml" />
+    </modules>
+  </component>
+</project>

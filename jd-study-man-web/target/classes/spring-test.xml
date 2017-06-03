@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <bean id="functionImpl" name="FunctionImpl"
+          class="com.jd.study.common.spring_study.spring_aop.jdk_proxy.FunctionImpl">
+    </bean>
+    <bean id="aspectClass" class="com.jd.study.common.spring_study.spring_aop.jdk_proxy.AspectClass"/>
+
+    <aop:config>
+        <!--aspect的形式-->
+         <aop:aspect ref="aspectClass">
+             <aop:pointcut id="pointCut1"
+                           expression="execution(* com.jd.study.common.spring_study.spring_aop.jdk_proxy.FunctionImpl.*(..))"></aop:pointcut>
+             <aop:before method="getLogger" pointcut-ref="pointCut1"/>
+             <aop:after-throwing method="throwException" pointcut-ref="pointCut1"></aop:after-throwing>
+         </aop:aspect>
+    <!--非aspect的形式-->
+      <!--  <aop:pointcut id="pointCut1" expression="execution(* com.jd.study.common.spring_study.spring_aop.jdk_proxy.FunctionImpl.*(..))"/>-->
+    </aop:config>
+</beans>

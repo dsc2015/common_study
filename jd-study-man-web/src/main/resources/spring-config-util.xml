@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+              http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+              http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <bean id="cacheClient" class="com.jd.jim.cli.ReloadableJimClientFactoryBean">
+        <property name="jimUrl" value="${jimdb_url}"/>
+    </bean>
+
+    <bean id="lifeCacheUtil" class="com.jd.xn.life.util.LifeCacheUtil">
+        <property name="umpAppName" value="man.treasure"/>
+        <property name="umpMethod" value="*"/>
+        <property name="umpKeyPrefix" value="treasure.cache.jimdb"/>
+        <property name="cacheClient" ref="cacheClient"/>
+    </bean>
+
+    <bean id="defaultSequence" class="com.jd.common.util.Sequence">
+        <property name="dataSource" ref="sequenceDataSource"/>
+        <property name="blockSize" value="100"/>
+    </bean>
+    <bean id="sequenceUtil" class="com.jd.common.util.SequenceUtil">
+        <property name="defaultSequence" ref="defaultSequence"/>
+    </bean>
+
+    <util:list id="operatorList" list-class="java.util.ArrayList">
+        <value>chikaiming</value>
+        <value>lidengfeng3</value>
+        <value>dongzhiqiang9</value>
+        <value>zhangyaqin5</value>
+        <value>wangyingjie5</value>
+        <value>zhangqingwei6</value>
+        <value>bjdiqi</value>
+        <value>liuzhilei3</value>
+        <value>dushuangcheng</value>
+    </util:list>
+
+
+</beans>

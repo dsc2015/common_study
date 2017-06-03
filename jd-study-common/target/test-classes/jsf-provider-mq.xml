@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jsf="http://jsf.jd.com/schema/jsf"
+       xmlns:jmq="http://code.jd.com/schema/jmq"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://jsf.jd.com/schema/jsf http://jsf.jd.com/schema/jsf/jsf.xsd
+	http://code.jd.com/schema/jmq http://code.jd.com/schema/jmq/jmq-1.0.xsd">
+
+    <bean id="helloService" class="com.jd.testjsf.HelloServiceImpl"/>
+
+    <!-- 发布JSF 服务 -->
+    <jsf:registry id="jsfRegistry" protocol="jsfRegistry" index="i.jsf.jd.com"/>
+    <jsf:server id="jsf" protocol="jsf" port="11090" host="0.0.0.0" daemon="false"/>
+    <jsf:provider id="helloServiceExport" interface="com.jd.testjsf.HelloService"
+                  ref="helloService" server="jsf" alias="JSF_0.0.1">
+    </jsf:provider>
+
+    <!-- 订阅JMQ消息 -->
+    <jmq:transport id="jmq.transport" address="192.168.179.66:50088" user="jsfmq" password="E34AFEAD"
+                   app="jsfmq" epoll="false"/>
+
+    <bean id="requestListener" class="com.jd.jsf.gd.plugins.jmq.ProviderRequestMessageListener">
+        <property name="producer" ref="resProducer" />
+    </bean>
+
+    <!-- 服务端消费请求队列 -->
+    <jmq:consumer id="helloServiceReqConsumer" transport="jmq.transport">
+        <jmq:listener topic="helloServiceReq" listener="requestListener"/>
+    </jmq:consumer>
+
+    <!-- 服务端返回结果生产队列 -->
+    <jmq:producer id="resProducer" retryTimes="3" transport="jmq.transport"/>
+
+
+
+</beans>

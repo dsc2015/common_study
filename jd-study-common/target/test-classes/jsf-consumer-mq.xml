@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jsf="http://jsf.jd.com/schema/jsf"
+       xmlns:jmq="http://code.jd.com/schema/jmq"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://jsf.jd.com/schema/jsf http://jsf.jd.com/schema/jsf/jsf.xsd
+	http://code.jd.com/schema/jmq http://code.jd.com/schema/jmq/jmq-1.0.xsd">
+
+    <!--调用jmq环境 包含发送request队列的 和 消费response队列的-->
+    <jmq:transport id="jmq.transport" address="192.168.179.66:50088" user="jsfmq" password="E34AFEAD"
+                   app="jsfmq" epoll="false"/>
+
+    <!-- 调用的时候发布到指定 队列 -->
+    <jmq:producer id="producer" retryTimes="3" transport="jmq.transport"/>
+
+    <bean id="mqfilter" class="com.jd.jsf.gd.plugins.jmq.ConsumerMQProducerFilter">
+        <property name="producer" ref="producer"/>
+        <property name="reqTopic" value="helloServiceReq"/>
+        <property name="resTopic" value="helloServiceRes"/>
+    </bean>
+
+    <!-- 从指定队列获取 返回结果 -->
+    <bean id="mqResponseListener" class="com.jd.testjsf.mq.MqAsyncClientResponseListener">
+    </bean>
+    <jmq:consumer id="helloServiceResConsumer" transport="jmq.transport">
+        <jmq:listener topic="helloServiceRes" listener="mqResponseListener"/>
+    </jmq:consumer>
+
+
+    <!-- 异步走mq，注册到注册中心，但是不从注册中心订阅 -->
+    <jsf:consumer id="helloService" interface="com.jd.testjsf.HelloService"
+                  alias="JSF_0.0.1" retries="0" protocol="jsf"
+                  subscribe="false" async="true" filter="mqfilter">
+    </jsf:consumer>
+
+
+</beans>

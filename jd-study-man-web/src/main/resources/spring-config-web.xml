@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+
+    <!-- 属性文件读入 -->
+    <import resource="spring-config-common.xml" />
+    <import resource="spring-config-authen.xml" />
+
+    <context:component-scan base-package="com.jd.rd.*"/>
+
+    <bean id="erpUserClient" class="com.jd.rd.gameman.web.sso.ErpUserClient"/>
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+    <!--请求转换适配器-->
+    <bean id="requestMappingHandlerAdapter"
+          class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="stringHttpMessageConverter"/>
+                <ref bean="fastJsonConverter"/>
+            </list>
+        </property>
+    </bean>
+
+    <!--处理静态的servlet请求，不进入拦截器-->
+    <mvc:default-servlet-handler default-servlet-name="default"/>
+
+    <!-- JSR-303 support will be detected on classpath and enabled automatically -->
+    <mvc:annotation-driven >
+        <mvc:message-converters register-defaults="true">
+            <ref bean="stringHttpMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+
+    <!--&lt;!&ndash; 配置velocity引擎 &ndash;&gt;-->
+    <bean id="velocityConfigurer"
+          class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <!-- 模板存放的路径 -->
+        <property name="resourceLoaderPath" value="/WEB-INF/views/"/>
+        <!-- Velocity配置文件 -->
+        <property name="configLocation" value="classpath:velocity.properties"/>
+        <property name="velocityProperties">
+            <props>
+                <prop key="input.encoding">UTF-8</prop>
+                <!-- 指定模板引擎进行模板处理的编码 -->
+                <prop key="output.encoding">UTF-8</prop>
+                <!-- 指定输出流的编码 -->
+                <prop key="contentType">text/html;charset=UTF-8</prop>
+                <!-- contentType -->
+            </props>
+        </property>
+    </bean>
+
+    <!-- 配置视图的显示 -->
+    <bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+        <property name="prefix" value=""/>
+        <!-- 视图文件的前缀，即存放的路径 -->
+        <property name="suffix" value=".vm"/>
+        <!-- 视图文件的后缀名 -->
+        <property name="attributesMap" ref="_urlBuilderMap"/>
+        <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml"/>
+        <!--toolbox配置文件路径 -->
+        <property name="dateToolAttribute" value="date"/>
+        <!--日期函数名称-->
+        <property name="numberToolAttribute" value="number"/>
+        <!--数字函数名称-->
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+
+        <property name="exposeSpringMacroHelpers" value="true"/>
+        <!--是否使用spring对宏定义的支持-->
+        <property name="exposeRequestAttributes" value="true"/>
+        <!--是否开放request属性-->
+        <property name="requestContextAttribute" value="rc"/>
+        <!--request属性引用名称-->
+        <property name="layoutUrl" value="layout/default.vm"/>
+        <!--指定layout文件 -->
+    </bean>
+
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="contentNegotiationManager" ref="contentNegotiationManager"/>
+        <property name="viewResolvers">
+            <list>
+                <ref bean="velocityViewResolver"/>
+            </list>
+        </property>
+        <property name="defaultViews">
+            <list>
+                <!-- for application/json -->
+                <bean class="com.alibaba.fastjson.support.spring.FastJsonJsonView"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="defaultContentType" value="text/xml"/>
+        <property name="ignoreAcceptHeader" value="true"/>
+        <property name="mediaTypes">
+            <map>
+                <entry key="json" value="application/json"/>
+                <entry key="xml" value="application/xml"/>
+            </map>
+        </property>
+    </bean>
+
+    <!--字符串处理转换-->
+    <bean id="stringHttpMessageConverter" class="com.jd.rd.game.service.common.UTF8StringHttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/plain;charset=UTF-8</value>
+                <value>application/json;charset=UTF-8</value>
+                <value>text/html;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--json转换-->
+    <bean id="fastJsonConverter" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+        <property name="features">
+            <list>
+                <value>WriteMapNullValue</value>
+                <value>QuoteFieldNames</value>
+            </list>
+        </property>
+    </bean>
+
+
+
+    <!-- 上传文件拦截，设置最大上传文件大小   10M=10*1024*1024(B)=10485760 bytes -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="10485760" />
+    </bean>
+
+
+
+    <bean id="schemeRegistry" class="org.apache.http.conn.scheme.SchemeRegistry">
+        <property name="items">
+            <map>
+                <entry key="http">
+                    <bean class="org.apache.http.conn.scheme.Scheme">
+                        <constructor-arg value="http" />
+                        <constructor-arg value="80" />
+                        <constructor-arg>
+                            <bean class="org.apache.http.conn.scheme.PlainSocketFactory" factory-method="getSocketFactory" />
+                        </constructor-arg>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <mvc:resources mapping="/css/**" location="/WEB-INF/css/" />
+    <mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
+    <mvc:resources mapping="/fl/**" location="/WEB-INF/fl/" />
+    <mvc:resources mapping="/img/**" location="/WEB-INF/img/" />
+</beans>

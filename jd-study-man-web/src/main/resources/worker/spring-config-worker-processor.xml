@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+  <!--  &lt;!&ndash; 奖励京豆任务 &ndash;&gt;
+    <bean id="awardJingBeanSingleTaskProcessor" class="com.jd.rd.game.service.task.base.SingleTaskProcessor">
+        &lt;!&ndash;worker执行业务处理类&ndash;&gt;
+        <property name="taskHandler" ref="awardJingBeanTaskHandler"/>
+    </bean>
+    <bean id="task_300_MultiTaskProcessor" class="com.jd.rd.game.service.task.base.MultiTaskProcessor">
+        <property name="singleTaskProcessor" ref="awardJingBeanSingleTaskProcessor"/>
+        &lt;!&ndash;任务执行线程池&ndash;&gt;
+        <property name="taskProcessorThreadPool" ref="threadPool_300"/>
+        &lt;!&ndash;任务名称，自定义&ndash;&gt;
+        <property name="taskName" value="awardJingBeanTaskHandler"/>
+        &lt;!&ndash;任务类型来自枚举 TaskTypeEnum &ndash;&gt;
+        <property name="taskType" value="300"/>
+        &lt;!&ndash;任务失败次数，自定义，根据任务的实际情况而定 &ndash;&gt;
+        <property name="failCount" value="10"/>
+    </bean>-->
+</beans>

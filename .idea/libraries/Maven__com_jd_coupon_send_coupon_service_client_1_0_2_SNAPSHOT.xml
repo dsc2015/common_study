@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.jd.coupon:send-coupon-service-client:1.0.2-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/jd/coupon/send-coupon-service-client/1.0.2-SNAPSHOT/send-coupon-service-client-1.0.2-20170223.032644-3.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/jd/coupon/send-coupon-service-client/1.0.2-SNAPSHOT/send-coupon-service-client-1.0.2-20170223.032644-3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/jd/coupon/send-coupon-service-client/1.0.2-SNAPSHOT/send-coupon-service-client-1.0.2-20170223.032644-3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

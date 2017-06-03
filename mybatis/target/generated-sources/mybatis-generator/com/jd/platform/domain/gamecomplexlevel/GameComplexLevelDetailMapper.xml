@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jd.platform.domain.gamecomplexlevel.GameComplexLevelDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.jd.platform.domain.gamecomplexlevel.GameComplexLevelDetail" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="game_id" property="gameId" jdbcType="BIGINT" />
+    <result column="complex_level_id" property="complexLevelId" jdbcType="BIGINT" />
+    <result column="awards_name" property="awardsName" jdbcType="VARCHAR" />
+    <result column="award_level" property="awardLevel" jdbcType="TINYINT" />
+    <result column="award_wins" property="awardWins" jdbcType="TINYINT" />
+    <result column="award_info" property="awardInfo" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="TINYINT" />
+    <result column="ext" property="ext" jdbcType="VARCHAR" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="yn" property="yn" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, game_id, complex_level_id, awards_name, award_level, award_wins, award_info, 
+    flag, ext, modified, created, yn
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jd.platform.domain.gamecomplexlevel.GameComplexLevelDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from game_complex_level_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from game_complex_level_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from game_complex_level_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jd.platform.domain.gamecomplexlevel.GameComplexLevelDetailExample" >
+    delete from game_complex_level_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jd.platform.domain.gamecomplexlevel.GameComplexLevelDetail" >
+    insert into game_complex_level_detail (id, game_id, complex_level_id, 
+      awards_name, award_level, award_wins, 
+      award_info, flag, ext, 
+      modified, created, yn
+      )
+    values (#{id,jdbcType=BIGINT}, #{gameId,jdbcType=BIGINT}, #{complexLevelId,jdbcType=BIGINT}, 
+      #{awardsName,jdbcType=VARCHAR}, #{awardLevel,jdbcType=TINYINT}, #{awardWins,jdbcType=TINYINT}, 
+      #{awardInfo,jdbcType=VARCHAR}, #{flag,jdbcType=TINYINT}, #{ext,jdbcType=VARCHAR}, 
+      #{modified,jdbcType=TIMESTAMP}, #{created,jdbcType=TIMESTAMP}, #{yn,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jd.platform.domain.gamecomplexlevel.GameComplexLevelDetail" >
+    insert into game_complex_level_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gameId != null" >
+        game_id,
+      </if>
+      <if test="complexLevelId != null" >
+        complex_level_id,
+      </if>
+      <if test="awardsName != null" >
+        awards_name,
+      </if>
+      <if test="awardLevel != null" >
+        award_level,
+      </if>
+      <if test="awardWins != null" >
+        award_wins,
+      </if>
+      <if test="awardInfo != null" >
+        award_info,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="ext != null" >
+        ext,
+      </if>
+      <if test="modified != null" >
+        modified,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="yn != null" >
+        yn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gameId != null" >
+        #{gameId,jdbcType=BIGINT},
+      </if>
+      <if test="complexLevelId != null" >
+        #{complexLevelId,jdbcType=BIGINT},
+      </if>
+      <if test="awardsName != null" >
+        #{awardsName,jdbcType=VARCHAR},
+      </if>
+      <if test="awardLevel != null" >
+        #{awardLevel,jdbcType=TINYINT},
+      </if>
+      <if test="awardWins != null" >
+        #{awardWins,jdbcType=TINYINT},
+      </if>
+      <if test="awardInfo != null" >
+        #{awardInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=TINYINT},
+      </if>
+      <if test="ext != null" >
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="modified != null" >
+        #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yn != null" >
+        #{yn,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jd.platform.domain.gamecomplexlevel.GameComplexLevelDetailExample" resultType="java.lang.Integer" >
+    select count(*) from game_complex_level_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update game_complex_level_detail
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.gameId != null" >
+        game_id = #{record.gameId,jdbcType=BIGINT},
+      </if>
+      <if test="record.complexLevelId != null" >
+        complex_level_id = #{record.complexLevelId,jdbcType=BIGINT},
+      </if>
+      <if test="record.awardsName != null" >
+        awards_name = #{record.awardsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.awardLevel != null" >
+        award_level = #{record.awardLevel,jdbcType=TINYINT},
+      </if>
+      <if test="record.awardWins != null" >
+        award_wins = #{record.awardWins,jdbcType=TINYINT},
+      </if>
+      <if test="record.awardInfo != null" >
+        award_info = #{record.awardInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flag != null" >
+        flag = #{record.flag,jdbcType=TINYINT},
+      </if>
+      <if test="record.ext != null" >
+        ext = #{record.ext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modified != null" >
+        modified = #{record.modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.created != null" >
+        created = #{record.created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.yn != null" >
+        yn = #{record.yn,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update game_complex_level_detail
+    set id = #{record.id,jdbcType=BIGINT},
+      game_id = #{record.gameId,jdbcType=BIGINT},
+      complex_level_id = #{record.complexLevelId,jdbcType=BIGINT},
+      awards_name = #{record.awardsName,jdbcType=VARCHAR},
+      award_level = #{record.awardLevel,jdbcType=TINYINT},
+      award_wins = #{record.awardWins,jdbcType=TINYINT},
+      award_info = #{record.awardInfo,jdbcType=VARCHAR},
+      flag = #{record.flag,jdbcType=TINYINT},
+      ext = #{record.ext,jdbcType=VARCHAR},
+      modified = #{record.modified,jdbcType=TIMESTAMP},
+      created = #{record.created,jdbcType=TIMESTAMP},
+      yn = #{record.yn,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jd.platform.domain.gamecomplexlevel.GameComplexLevelDetail" >
+    update game_complex_level_detail
+    <set >
+      <if test="gameId != null" >
+        game_id = #{gameId,jdbcType=BIGINT},
+      </if>
+      <if test="complexLevelId != null" >
+        complex_level_id = #{complexLevelId,jdbcType=BIGINT},
+      </if>
+      <if test="awardsName != null" >
+        awards_name = #{awardsName,jdbcType=VARCHAR},
+      </if>
+      <if test="awardLevel != null" >
+        award_level = #{awardLevel,jdbcType=TINYINT},
+      </if>
+      <if test="awardWins != null" >
+        award_wins = #{awardWins,jdbcType=TINYINT},
+      </if>
+      <if test="awardInfo != null" >
+        award_info = #{awardInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=TINYINT},
+      </if>
+      <if test="ext != null" >
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="modified != null" >
+        modified = #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yn != null" >
+        yn = #{yn,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jd.platform.domain.gamecomplexlevel.GameComplexLevelDetail" >
+    update game_complex_level_detail
+    set game_id = #{gameId,jdbcType=BIGINT},
+      complex_level_id = #{complexLevelId,jdbcType=BIGINT},
+      awards_name = #{awardsName,jdbcType=VARCHAR},
+      award_level = #{awardLevel,jdbcType=TINYINT},
+      award_wins = #{awardWins,jdbcType=TINYINT},
+      award_info = #{awardInfo,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=TINYINT},
+      ext = #{ext,jdbcType=VARCHAR},
+      modified = #{modified,jdbcType=TIMESTAMP},
+      created = #{created,jdbcType=TIMESTAMP},
+      yn = #{yn,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

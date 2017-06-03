@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- 单点登录拦截器配置 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <ref bean="springSSOInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <ref bean="gameInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- 单点登录springmvc 拦截器bean -->
+    <bean id="springSSOInterceptor" class="com.jd.common.springmvc.interceptor.SpringSSOInterceptor"
+          init-method="initialize">
+        <property name="appDomainName" value="${webapp.domain.name}"/>
+        <property name="appHomeUrl" value="http://${webapp.domain.name}/"/>
+        <property name="loginUrl" value="${login.address}"/>
+        <property name="ssoDomainName" value="${sso.auth.cookie.domain}"/>
+        <property name="excludePath" value="${sso.exclude.path}"/>
+        <property name="ssoService" ref="ssoService"/>
+    </bean>
+
+    <!--拦截器-->
+    <bean id="gameInterceptor" class="com.jd.rd.gameman.web.interceptor.GameInterceptor"/>
+
+    <!-- url related -->
+    <util:map id="_urlBuilderMap">
+        <!--京东地址-->
+        <entry key="jdModule">
+            <bean class="com.jd.common.web.url.UrlBuilder">
+                <!-- web自己的域名访问地址，本地配host访问 -->
+                <constructor-arg value="${jd.domain.name}"/>
+            </bean>
+        </entry>
+        <!-- 彩娱 -->
+        <entry key="homeModule">
+            <bean class="com.jd.common.web.url.UrlBuilder">
+                <constructor-arg value="${webapp.protocol.domain.name}"/>
+            </bean>
+        </entry>
+        <!-- 登陆 -->
+        <entry key="loginUrl">
+            <bean class="com.jd.common.web.url.UrlBuilder">
+                <!-- 单点登录跳转地址 -->
+                <constructor-arg value="${login.address}"/>
+            </bean>
+        </entry>
+        <!--样式、js、图片地址-->
+        <entry key="assetModule">
+            <bean class="com.jd.common.web.url.UrlBuilder">
+                <constructor-arg value="${server.misc.address}"/>
+            </bean>
+        </entry>
+    </util:map>
+
+    <bean id="urlBuilders" class="com.jd.common.web.url.UrlBuilders">
+        <constructor-arg ref="_urlBuilderMap"/>
+    </bean>
+
+</beans>

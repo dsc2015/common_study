@@ -27,6 +27,9 @@
         <module name="jd-study-common" />
         <module name="jd-study-dubbo" />
         <module name="jd-study-man-web" />
+        <module name="jd_es" />
+        <module name="jd_sharding" />
+        <module name="jd_worker" />
         <module name="mybatis" />
       </profile>
       <profile default="false" name="Annotation profile for jd-study-api-web" enabled="true">
@@ -43,6 +46,9 @@
       <module name="jd-study-common" target="1.7" />
       <module name="jd-study-dubbo" target="1.7" />
       <module name="jd-study-man-web" target="1.7" />
+      <module name="jd_es" target="1.7" />
+      <module name="jd_sharding" target="1.7" />
+      <module name="jd_worker" target="1.7" />
       <module name="mybatis" target="1.7" />
     </bytecodeTargetLevel>
   </component>

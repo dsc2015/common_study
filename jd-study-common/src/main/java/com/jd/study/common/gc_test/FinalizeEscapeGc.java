@@ -1,6 +1,6 @@
 package com.jd.study.common.gc_test;
 /**
- * @description 
+ * @description 对象只能被放入引用队列一次，下次直接被GC回收，而不会被finalize放到引用队列中等待被清除
  * @author dushuangcheng
  * @create 2017/3/31
  */

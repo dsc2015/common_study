@@ -13,6 +13,9 @@
         <module>jd-study-man-web</module>
         <module>mybatis</module>
         <module>jd-study-dubbo</module>
+        <module>jd_sharding</module>
+        <module>jd_es</module>
+        <module>jd_worker</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

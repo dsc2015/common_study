@@ -3,7 +3,10 @@
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="jar://$MAVEN_REPOSITORY$/com/jd/common/jd-common-util/1.1.2/jd-common-util-1.1.2-sources.jar!/com/jd/common/util/Entities.java" charset="GBK" />
     <file url="jar://$MAVEN_REPOSITORY$/com/jd/common/jd-common-util/1.1.2/jd-common-util-1.1.2-sources.jar!/com/jd/common/util/PaginatedList.java" charset="GBK" />
+    <file url="jar://$MAVEN_REPOSITORY$/com/jd/common/jd-common-util/1.1.2/jd-common-util-1.1.2-sources.jar!/com/jd/common/util/Sequence.java" charset="GBK" />
+    <file url="jar://$MAVEN_REPOSITORY$/com/jd/common/jd-common-util/1.1.2/jd-common-util-1.1.2-sources.jar!/com/jd/common/util/SequenceUtil.java" charset="GBK" />
     <file url="jar://$MAVEN_REPOSITORY$/com/jd/common/jd-common-util/1.1.2/jd-common-util-1.1.2-sources.jar!/com/jd/common/util/StringEscapeUtils.java" charset="GBK" />
+    <file url="jar://$MAVEN_REPOSITORY$/com/jd/common/jd-common-util/1.1.2/jd-common-util-1.1.2-sources.jar!/com/jd/common/util/base/BaseQuery.java" charset="UTF-8" />
     <file url="jar://$MAVEN_REPOSITORY$/com/jd/common/jd-common-util/1.1.2/jd-common-util-1.1.2-sources.jar!/com/jd/common/util/base/PaginatedArrayList.java" charset="GBK" />
     <file url="jar://$MAVEN_REPOSITORY$/com/jd/huodong/api/jd-huodong-api/1.0-SNAPSHOT/jd-huodong-api-1.0-20160906.024932-14-sources.jar!/com/jd/huodong/domain/enumUtil/ResultCodeEnum.java" charset="GBK" />
     <file url="jar://$MAVEN_REPOSITORY$/com/jd/huodong/api/jd-huodong-api/1.0-SNAPSHOT/jd-huodong-api-1.0-20160906.024932-14-sources.jar!/com/jd/huodong/domain/wsDomain/AddChanceParam.java" charset="GBK" />
@@ -39,6 +42,9 @@
     <file url="file://$PROJECT_DIR$/jd-study-man-web/src/main/resources/spring-jsf-provider.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jd-study-man-web/src/main/resources/velocity.properties" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jd-study-man-web/src/main/resources/worker" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jd_es" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jd_sharding" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jd_worker" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mybatis" charset="UTF-8" />
   </component>
 </project>

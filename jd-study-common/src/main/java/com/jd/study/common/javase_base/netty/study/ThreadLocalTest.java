@@ -32,6 +32,9 @@ public class ThreadLocalTest {
         String s = threadLocal.get();
         String s1 = threadLocal2.get();
 
+        Thread thread = Thread.currentThread();
+
+        new MyThread2().run();
 
         FastThreadLocal fastThreadLocal = new FastThreadLocal();
         fastThreadLocal.set(100);
@@ -40,7 +43,25 @@ public class ThreadLocalTest {
         threadLocalTest.run0();
     }
 
+   static class MyThread2 implements Runnable{
+        @Override
+        public void run() {
+            ThreadLocal<String> local=new ThreadLocal<>();
+            ThreadLocal<String> local2=new ThreadLocal<>();
+            local.set("a");
+            local2.set("b");
 
+            String s = local.get();
+            String s1 = local2.get();
+            Thread thread = Thread.currentThread();
+            //父线程
+            InheritableThreadLocal<Object> inheritableThreadLocal=new InheritableThreadLocal<>();
+            Object o = inheritableThreadLocal.get();
+            System.out.println(o);
+            System.out.println(s);
+            System.out.println(s1);
+        }
+    }
     class MyThread extends FastThreadLocalThread{
         @Override
         public void run() {

@@ -3,6 +3,7 @@ package com.jd.study.common.javase_base.collection_test;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -24,7 +25,7 @@ public class ListTest {
         Integer c=new Integer(4);
         Integer d=new Integer(3);
         Integer e=new Integer(3);
-        Integer f=new Integer(5);
+        Integer f=new Integer(1000);
 
         list.add(a);
         list.add(b);
@@ -32,9 +33,11 @@ public class ListTest {
         list.add(d);
         list.add(e);
         list.add(f);
-        list.add(null);
+        //list.add(null);
 
         List<String> strings = Arrays.asList("a", "b", "c");
+
+        Integer max = Collections.max(list);
         //strings.add("k");
         System.out.println(list.size());
 

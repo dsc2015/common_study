@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: popxn-common:popxn-common:1.1-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/popxn-common/popxn-common/1.1-SNAPSHOT/popxn-common-1.1-SNAPSHOT.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/popxn-common/popxn-common/1.1-SNAPSHOT/popxn-common-1.1-20160614.110011-11.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/popxn-common/popxn-common/1.1-SNAPSHOT/popxn-common-1.1-SNAPSHOT-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/popxn-common/popxn-common/1.1-SNAPSHOT/popxn-common-1.1-20160614.110011-11-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/popxn-common/popxn-common/1.1-SNAPSHOT/popxn-common-1.1-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/popxn-common/popxn-common/1.1-SNAPSHOT/popxn-common-1.1-20160614.110011-11-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

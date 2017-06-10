@@ -171,7 +171,7 @@ public class HeapSort<T extends Comparable<T>> {
                 }else {
                     largestIndex=rightChild;
                 }
-                //找到了合适的交换位置
+                //已经有序了，后面的就不用执行
                 if(temp.getData().compareTo(heapArray[largestIndex].getData())>0){
                     break;
                 }

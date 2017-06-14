@@ -36,6 +36,9 @@ public class ListTest {
         //list.add(null);
 
         List<String> strings = Arrays.asList("a", "b", "c");
+        //测试数组转换,参数传入的数组长度将不会影响最终的数组的长度，都是一样的。
+        String[] strings1 = strings.toArray(new String[10]);
+
 
         Integer max = Collections.max(list);
         //strings.add("k");

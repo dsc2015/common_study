@@ -19,7 +19,9 @@
           <root url="jar://D:/devTools/jdk1.7/lib/tools.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://D:/devTools/jdk1.7/lib/tools.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="library" name="Maven: commons-cli:commons-cli:1.2" level="project" />
@@ -197,7 +199,9 @@
           <root url="jar://D:/devTools/jdk1.7/lib/tools.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://D:/devTools/jdk1.7/lib/tools.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-validator:5.2.2.Final" level="project" />

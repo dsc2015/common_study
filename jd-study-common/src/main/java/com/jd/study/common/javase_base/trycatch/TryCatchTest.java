@@ -21,11 +21,40 @@ public class TryCatchTest {
             System.out.println("1000");
         }
 
+
+    }
+    /**
+     * @description 抛异常之后catch里面的return执行
+     * @Author  dushuangcheng
+     * @param
+     * @return
+     * @throw
+     * @date   2017/6/15
+     */
+    public String method1(){
+        try {
+            int k=1/0;
+
+        }catch (Exception e){
+            return "aaa";
+        }
+        return "return";
+    }
+
+    public String method2(){
+        try {
+            int k=1/3;
+
+        }finally {
+            System.out.println("000000000000000");
+        }
+        System.out.println("1111111111");
+        return "return";
     }
 
     public static void main(String[] args) {
         TryCatchTest tryCatchTest = new TryCatchTest();
-        String method = tryCatchTest.method();
+        String method = tryCatchTest.method2();
         System.out.println(method);
     }
 }

@@ -6,6 +6,7 @@ package com.jd.study.common.javase_base.multithread.threadsafe;
  * @create 2017/3/23
  */
 public class ObjectEscape {
+    Object o;
     public ObjectEscape(EventSource eventSource){
         new FunctionFace(){
             @Override

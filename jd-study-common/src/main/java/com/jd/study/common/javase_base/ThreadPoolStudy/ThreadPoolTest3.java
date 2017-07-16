@@ -1,5 +1,7 @@
 package com.jd.study.common.javase_base.ThreadPoolStudy;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.concurrent.*;
 
 /**
@@ -8,14 +10,17 @@ import java.util.concurrent.*;
  * @create 2017-06-06 19:54
  */
 public class ThreadPoolTest3 {
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
+    public static void main(String[] args) throws ExecutionException, InterruptedException, NoSuchFieldException, IllegalAccessException, NoSuchMethodException {
+        ThreadPoolExecutor pool = new ThreadPoolExecutor(10, 10, 3000, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(100));
+        Class<?>[] worker = pool.getClass().getDeclaredClasses();
+        Field thread= worker[4].getDeclaredField("thread");
         ExecutorService executorService = Executors.newFixedThreadPool(10);
         Integer result=1;
         //将callable或者Runnable类型的对象封装为FutureTask类型的对象
         for(int i=0;i<10;i++){
             FutureTask<Integer> integerFutureTask = new FutureTask<Integer>(new MyTask(),result);
             if(i==5){
-                integerFutureTask.cancel(true);
+               // integerFutureTask.cancel(true);
             }
             executorService.execute(integerFutureTask);
             Integer integer = integerFutureTask.get();
@@ -28,7 +33,7 @@ public class ThreadPoolTest3 {
         @Override
         public void run() {
             try {
-                Thread.sleep(4000);
+                Thread.sleep(4);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

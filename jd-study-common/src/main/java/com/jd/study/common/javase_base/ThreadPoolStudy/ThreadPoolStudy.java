@@ -1,5 +1,11 @@
 package com.jd.study.common.javase_base.ThreadPoolStudy;
 
+import com.sun.tools.javac.code.Attribute;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -9,7 +15,21 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class ThreadPoolStudy {
     public static void main(String[] args) {
-        System.out.println("========================="+~CAPACITY);
+        HashSet<Integer> set1 = new HashSet<Integer>();
+        HashSet<Integer> set2 = new HashSet<Integer>();
+        Integer[] it1=new Integer[]{8,1,2,4};
+        Integer[] it2=new Integer[]{1,2,3,4,5};
+        List<Integer> integers1 = Arrays.asList(it1);
+        set1.addAll(integers1);
+        List<Integer> integers2 = Arrays.asList(it2);
+        set2.addAll(integers2);
+
+        set1.retainAll(set2);
+        System.out.println(set1);
+        System.out.println(set2);
+
+
+        System.out.println("=========================" + ~CAPACITY);
         ThreadPoolStudy ts = new ThreadPoolStudy();
        // Integer it=new Integer(1);
         System.out.println("cont_bits= "+ThreadPoolStudy.COUNT_BITS);
